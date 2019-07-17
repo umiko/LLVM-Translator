@@ -1,6 +1,6 @@
-package test;
+package llvm.test;
 
-import llvm.utility.Parameter;
+import llvm.Parameter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Parameter")
 class ParameterTest {
 
-    Parameter p;
+    private Parameter p;
 
     @BeforeEach
     void setUp() {
@@ -19,10 +19,9 @@ class ParameterTest {
     @Test
     @DisplayName("Constructor Testing")
     void constructor(){
-        assertThrows(IllegalArgumentException.class, ()->{new Parameter(null, null);});
-        assertThrows(IllegalArgumentException.class, ()->{new Parameter(null, "");});
+        assertThrows(IllegalArgumentException.class, ()-> new Parameter(null, null));
+        assertThrows(IllegalArgumentException.class, ()-> new Parameter(null, ""));
         assertDoesNotThrow(()->{new Parameter(null, "integer");});
-
     }
 
     @Test
@@ -48,9 +47,9 @@ class ParameterTest {
     @Test
     @DisplayName("Raw Type Setter")
     void setRawType() {
-        assertDoesNotThrow(()->{p.setRawType("string");});
+        assertDoesNotThrow(()-> p.setRawType("string"));
         assertEquals("string", p.getRawType());
-        assertThrows(IllegalArgumentException.class, ()->{p.setRawType("fish");});
+        assertThrows(IllegalArgumentException.class, ()-> p.setRawType("fish"));
     }
 
     @Test

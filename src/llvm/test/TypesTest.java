@@ -1,4 +1,4 @@
-package test;
+package llvm.test;
 
 import llvm.utility.Types;
 import org.junit.jupiter.api.DisplayName;

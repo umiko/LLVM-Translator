@@ -1,14 +1,12 @@
-package llvm.utility;
+package llvm;
 
-import llvm.translators.Identifier;
+import llvm.utility.Types;
 
-public class Parameter {
-
-
+public class Variable implements IEvaluable, IIdentifiable {
     private String rawName;
     private String rawType;
 
-    public Parameter(String rawName, String rawType){
+    public Variable(String rawName, String rawType){
         if(null == rawName){
             rawName = "";
         }
@@ -24,6 +22,11 @@ public class Parameter {
     }
 
     public void setRawName(String rawName) {
+        if(IIdentifiable.validateIdentifier(rawName))
+            setName(rawName);
+    }
+
+    protected void setName(String rawName) {
         this.rawName = rawName;
     }
 
@@ -40,18 +43,14 @@ public class Parameter {
 
     public String getLLVMName(){
         //parameters are never global
-        return Identifier.translateIdentifier(rawName, false);
+        return IIdentifiable.translateIdentifier(rawName, false);
     }
 
     public String getLLVMType(){
         return Types.lookup(rawType);
     }
 
-    public String toLLVMString(){
-        if(getRawName()==""){
-            return getLLVMType();
-        }
-        return String.format("%s %s", getLLVMType(), getLLVMName());
+    public Parameter toParameter(){
+        return new Parameter(this.rawName, this.rawType);
     }
-
 }
