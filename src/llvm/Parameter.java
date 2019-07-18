@@ -6,7 +6,7 @@ public class Parameter extends Variable{
         super(rawName, rawType);
     }
 
-    //circumvent checking if the name is existent
+    //circumvent checking if the name is existent as parameters can be identifierless in declaration signatures
     @Override
     public void setRawName(String rawName) {
         this.setName(rawName);

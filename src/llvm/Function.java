@@ -14,6 +14,8 @@ public class Function implements IIdentifiable, IEvaluable {
         this.parameterList = parameterList;
     }
 
+    //Generators
+
     public String buildFunction(String formattingString, Parameter[] parameterList){
         return String.format(formattingString, Types.lookup(this.rawType), IIdentifiable.translateIdentifier(rawName, true), buildParameterList(parameterList));
     }
@@ -46,6 +48,9 @@ public class Function implements IIdentifiable, IEvaluable {
     public static String writeLnDeclaration(){
         return new Function("integer", "puts", new Parameter[]{new Parameter("", "string")}).buildFunctionDeclaration();
     }
+
+
+    //Helpers, Getters, Setters
 
     public static String buildParameterList(Parameter[] params){
         if(params !=null && params.length>0){

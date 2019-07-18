@@ -17,6 +17,10 @@ public class Variable implements IEvaluable, IIdentifiable {
         this.rawType = rawType;
     }
 
+
+
+    //Getter, Setter, Helper
+
     public String getRawName() {
         return rawName;
     }

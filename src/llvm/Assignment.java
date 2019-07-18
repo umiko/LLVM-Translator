@@ -8,5 +8,11 @@ public class Assignment extends Statement {
     public Assignment(Variable assignee, Expression value){
         this.assignee = assignee;
         this.value = value;
+
+        public String buildAssignment(){
+            return String.format("%s = %s", assignee.getLLVMName(), value.getLLVMString());
+        }
+
+
     }
 }

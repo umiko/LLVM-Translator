@@ -25,4 +25,8 @@ public class Expression extends Statement implements IEvaluable {
     public String getLLVMType() {
         return Types.lookup(rawType);
     }
+
+    public String getLLVMString(){
+        return "";
+    }
 }
