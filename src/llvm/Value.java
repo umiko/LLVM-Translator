@@ -36,4 +36,9 @@ public class Value implements IEvaluable {
     public String getLLVMType() {
         return Types.lookup(rawType);
     }
+
+    @Override
+    public String getLLVMString() {
+        return value;
+    }
 }

@@ -12,6 +12,7 @@ public class Types {
         types.put("real", "float");
         types.put("boolean", "i1");
         types.put("char", "i8");
+        types.put("void", "void");
     }
 
     public static String lookup(String type){

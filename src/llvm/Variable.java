@@ -6,6 +6,8 @@ public class Variable implements IEvaluable, IIdentifiable {
     private String rawName;
     private String rawType;
 
+    private static Integer tempVarCounter = 0;
+
     public Variable(String rawName, String rawType){
         if(null == rawName){
             rawName = "";
@@ -17,9 +19,15 @@ public class Variable implements IEvaluable, IIdentifiable {
         this.rawType = rawType;
     }
 
-
+    public static Variable createTempVar(String rawType){
+        return new Variable(getTempVarCounter().toString(), rawType);
+    }
 
     //Getter, Setter, Helper
+
+    private static Integer getTempVarCounter(){
+        return tempVarCounter++;
+    }
 
     public String getRawName() {
         return rawName;
@@ -52,6 +60,10 @@ public class Variable implements IEvaluable, IIdentifiable {
 
     public String getLLVMType(){
         return Types.lookup(rawType);
+    }
+
+    public String getLLVMString(){
+        return String.format("%s %s", getLLVMType(), getLLVMName());
     }
 
     public Parameter toParameter(){
