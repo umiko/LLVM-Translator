@@ -5,10 +5,12 @@ import llvm.utility.Types;
 public class Variable implements IEvaluable, IIdentifiable {
     private String rawName;
     private String rawType;
+    private boolean isGlobal;
 
     private static Integer tempVarCounter = 0;
 
-    public Variable(String rawName, String rawType){
+    public Variable(String rawName, String rawType, boolean isGlobal ){
+        this.isGlobal = isGlobal;
         if(null == rawName){
             rawName = "";
         }
@@ -20,7 +22,7 @@ public class Variable implements IEvaluable, IIdentifiable {
     }
 
     public static Variable createTempVar(String rawType){
-        return new Variable(getTempVarCounter().toString(), rawType);
+        return new Variable(getTempVarCounter().toString(), rawType, false);
     }
 
     //Getter, Setter, Helper
@@ -55,7 +57,7 @@ public class Variable implements IEvaluable, IIdentifiable {
 
     public String getLLVMName(){
         //parameters are never global
-        return IIdentifiable.translateIdentifier(rawName, false);
+        return IIdentifiable.translateIdentifier(rawName, isGlobal);
     }
 
     public String getLLVMType(){
@@ -63,7 +65,8 @@ public class Variable implements IEvaluable, IIdentifiable {
     }
 
     public String getLLVMString(){
-        return String.format("%s %s", getLLVMType(), getLLVMName());
+        //return String.format("%s %s", getLLVMType(), getLLVMName());
+        return getLLVMName();
     }
 
     public Parameter toParameter(){

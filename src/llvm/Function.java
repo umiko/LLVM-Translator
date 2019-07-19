@@ -87,6 +87,11 @@ public class Function implements IIdentifiable, IEvaluable {
     }
 
     @Override
+    public String getLLVMString() {
+        return buildFunctionDefinition();
+    }
+
+    @Override
     public String getRawName() {
         return this.rawName;
     }

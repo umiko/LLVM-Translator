@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Identifier Translation")
-class IdentifierTest {
+class IIdentifiableTest {
 
     @Test
     @DisplayName("Parameter Validity")

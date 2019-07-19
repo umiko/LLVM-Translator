@@ -3,7 +3,7 @@ package llvm;
 public class Parameter extends Variable{
 
     public Parameter(String rawName, String rawType){
-        super(rawName, rawType);
+        super(rawName, rawType, false);
     }
 
     //circumvent checking if the name is existent as parameters can be identifierless in declaration signatures

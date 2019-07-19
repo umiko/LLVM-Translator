@@ -17,6 +17,7 @@ class TypesTest {
         assertEquals("i8*", Types.lookup("string"),"String lookup failed");
         assertEquals("i8", Types.lookup("char"),"Char lookup failed");
         assertEquals("float", Types.lookup("real"),"Real lookup failed");
+        assertEquals("void", Types.lookup("void"),"Void lookup failed");
     }
 
     @Test

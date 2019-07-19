@@ -9,7 +9,7 @@ public class Operations {
     private Operations(){
         operations.put("+", "add");
         operations.put("*", "mul");
-        operations.put("/", "div");
+        operations.put("/", "sdiv");
         operations.put("-", "sub");
     }
 

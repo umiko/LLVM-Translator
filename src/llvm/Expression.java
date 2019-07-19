@@ -13,6 +13,8 @@ public class Expression extends Statement implements IEvaluable {
         this.operation = op;
         values[0]=left;
         values[1]=right;
+        //operations can only work on the same type
+        this.rawType = left.getRawType();
     }
 
     @Override
@@ -42,12 +44,12 @@ public class Expression extends Statement implements IEvaluable {
                     //create a new
                     Variable temp = Variable.createTempVar(values[i].getRawType());
                     Assignment a = new Assignment(temp, values[i]);
-                    sb.append(a.buildAssignment());
+                    sb.append(a.buildAssignment()+"\n");
                     values[i] = temp;
                 }
             }
         }
 
-        return String.format("%s %s %s, %s", Operations.lookup(operation), Types.lookup(rawType), values[0], values[1]);
+        return sb.append(String.format("%s %s %s, %s", Operations.lookup(operation), Types.lookup(rawType), values[0].getLLVMString(), values[1].getLLVMString())).toString();
     }
 }

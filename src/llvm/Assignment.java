@@ -7,6 +7,10 @@ public class Assignment extends Statement {
 
     public Assignment(Variable assignee, IEvaluable value){
         this.assignee = assignee;
+        //Assignments arent a thing, it needs operations
+        if(value.getClass() != Expression.class){
+            value = new Expression("+", value, new Value(value.getRawType(), "0"));
+        }
         this.value = value;
     }
 
