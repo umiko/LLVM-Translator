@@ -31,7 +31,23 @@ public class Expression extends Statement implements IEvaluable {
         return Types.lookup(rawType);
     }
 
+
+    //TODO: Test this abomination
     public String getLLVMString(){
+        StringBuilder sb = new StringBuilder("");
+        //resolve nested expressions
+        if(values[0].getClass() != Expression.class || values[1].getClass() != Expression.class){
+            for (int i = 0; i<values.length; i++) {
+                if (values[i].getClass() == Expression.class){
+                    //create a new
+                    Variable temp = Variable.createTempVar(values[i].getRawType());
+                    Assignment a = new Assignment(temp, values[i]);
+                    sb.append(a.buildAssignment());
+                    values[i] = temp;
+                }
+            }
+        }
+
         return String.format("%s %s %s, %s", Operations.lookup(operation), Types.lookup(rawType), values[0], values[1]);
     }
 }
